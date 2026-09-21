@@ -24,8 +24,11 @@ io.on('connection', (socket) => {
   });
 });
 
+app.get('/', (req, res) => res.json({ message: 'Unbox Robotics Backend API Active', status: 'online' }));
+
 const routes = require('./routes')(io);
 app.use('/api', routes);
+app.use('/', routes);
 
 const PORT = process.env.PORT || 3000;
 
