@@ -4,6 +4,17 @@ A full-stack real-time speedometer application built for the Unbox Robotics **Ro
 
 ---
 
+## 🚀 Live Cloud Deployment
+
+| Service | Component | Live URL |
+| :--- | :--- | :--- |
+| **Frontend Speedometer UI** | React 19 + Vite Static Console | [https://unbox-frontend-s2qu.onrender.com/](https://unbox-frontend-s2qu.onrender.com/) |
+| **Backend API & WebSocket** | Node.js + Express + Socket.IO | [https://unbox-backend-ucjg.onrender.com/](https://unbox-backend-ucjg.onrender.com/) |
+| **Health Check Endpoint** | HTTP 200 Health Probe | [https://unbox-backend-ucjg.onrender.com/health](https://unbox-backend-ucjg.onrender.com/health) |
+| **Latest Telemetry API** | Live Sensor Ingestion REST Endpoint | [https://unbox-backend-ucjg.onrender.com/api/speed/latest](https://unbox-backend-ucjg.onrender.com/api/speed/latest) |
+
+---
+
 ## Overview
 
 * **Sensor Telemetry:** Speed data is generated and transmitted at 1-second intervals by an autonomous sensor simulator.

@@ -5,6 +5,16 @@
 
 ---
 
+## Live Deployment Links
+
+* **Live Frontend UI:** [https://unbox-frontend-s2qu.onrender.com/](https://unbox-frontend-s2qu.onrender.com/)
+* **Live Backend API:** [https://unbox-backend-ucjg.onrender.com/](https://unbox-backend-ucjg.onrender.com/)
+* **Health Check Probe:** [https://unbox-backend-ucjg.onrender.com/health](https://unbox-backend-ucjg.onrender.com/health)
+* **Latest Telemetry API:** [https://unbox-backend-ucjg.onrender.com/api/speed/latest](https://unbox-backend-ucjg.onrender.com/api/speed/latest)
+* **GitHub Repository:** [https://github.com/AKSHITAK1040/unbox-robotics](https://github.com/AKSHITAK1040/unbox-robotics)
+
+---
+
 ## 1. Approach
 
 The objective was to engineer an industrial, production-grade real-time speedometer system reflecting the operating realities of Autonomous Mobile Robots (AMRs). Real warehouse robots emit continuous velocity telemetry that must be persisted durably for fleet safety, telemetry audit trails, and performance analytics before being surfaced to operations dashboards.
