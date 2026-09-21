@@ -1,6 +1,12 @@
 const axios = require('axios');
 
 let rawBackendUrl = process.env.BACKEND_URL || 'http://localhost:3000';
+
+// If Render passes a naked service name (e.g. "unbox-backend-ucjg"), append .onrender.com
+if (rawBackendUrl && !rawBackendUrl.includes('.') && !rawBackendUrl.includes('localhost') && !rawBackendUrl.includes(':')) {
+  rawBackendUrl = `${rawBackendUrl}.onrender.com`;
+}
+
 if (!rawBackendUrl.startsWith('http://') && !rawBackendUrl.startsWith('https://')) {
   rawBackendUrl = `https://${rawBackendUrl}`;
 }

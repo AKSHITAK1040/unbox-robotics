@@ -4,6 +4,12 @@ import SpeedometerGauge from './components/SpeedometerGauge';
 import { format } from 'date-fns';
 
 let rawApiUrl = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+
+// If Render passes a naked service name (e.g. "unbox-backend-ucjg"), append .onrender.com
+if (rawApiUrl && !rawApiUrl.includes('.') && !rawApiUrl.includes('localhost') && !rawApiUrl.includes(':')) {
+  rawApiUrl = `${rawApiUrl}.onrender.com`;
+}
+
 if (rawApiUrl && !rawApiUrl.startsWith('http://') && !rawApiUrl.startsWith('https://')) {
   rawApiUrl = `https://${rawApiUrl}`;
 }
