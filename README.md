@@ -17,14 +17,14 @@ A full-stack real-time speedometer application built for the Unbox Robotics **Ro
 
 ```mermaid
 flowchart TD
-    Simulator[Sensor Simulator] -->|POST /api/speed (1s)| Backend[Node.js / Express Backend]
-    Backend -->|INSERT| Database[(PostgreSQL Database)]
-    Database -->|Success| Backend
-    Backend -->|Socket.IO emit 'speed_update'| Socket((WebSocket Server))
-    Socket -->|Real-Time Push| Frontend[React Speedometer UI]
+    Simulator["Sensor Simulator"] -->|"POST /api/speed (1s)"| Backend["Node.js / Express Backend"]
+    Backend -->|"INSERT"| Database[("PostgreSQL Database")]
+    Database -->|"Success"| Backend
+    Backend -->|"Socket.IO emit: speed_update"| Socket(("WebSocket Server"))
+    Socket -->|"Real-Time Push"| Frontend["React Speedometer UI"]
 
-    Frontend -.->|Initial Mount: GET /api/speed/latest| Backend
-    Backend -.->|Query Latest Record| Database
+    Frontend -.->|"Initial Mount: GET /api/speed/latest"| Backend
+    Backend -.->|"Query Latest Record"| Database
 ```
 
 Detailed architectural specifications and diagrams are available in [`docs/architecture.md`](docs/architecture.md) and [`docs/submission.md`](docs/submission.md).
@@ -164,3 +164,4 @@ The system has been verified through automated and runtime checks:
   ```bash
   cd backend && npm test
   ```
+
