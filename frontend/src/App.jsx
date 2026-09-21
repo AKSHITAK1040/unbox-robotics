@@ -3,7 +3,11 @@ import { io } from 'socket.io-client';
 import SpeedometerGauge from './components/SpeedometerGauge';
 import { format } from 'date-fns';
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+let rawApiUrl = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+if (rawApiUrl && !rawApiUrl.startsWith('http://') && !rawApiUrl.startsWith('https://')) {
+  rawApiUrl = `https://${rawApiUrl}`;
+}
+const API_URL = rawApiUrl;
 
 function App() {
   const [speedData, setSpeedData] = useState(null);

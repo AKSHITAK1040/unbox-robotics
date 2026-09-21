@@ -72,6 +72,7 @@ unbox-robotics/
 ├── tests/
 │   └── test_api.sh      # Bash API integration test suite
 ├── docker-compose.yml   # Multi-container orchestration
+├── render.yaml          # Render Blueprint for 1-click cloud deployment
 ├── .env.example         # Default environment template
 ├── .gitignore           # Git ignore rules
 └── README.md
@@ -99,6 +100,24 @@ docker compose down
 ```
 
 *(Note: PostgreSQL data persists across restarts in the `pgdata` named volume).*
+
+---
+
+## Deploy to Render (Live Website)
+
+The project includes a ready-to-use [`render.yaml`](render.yaml) Blueprint that provisions the complete 4-tier stack (Managed PostgreSQL, Node.js API + Socket.IO Server, Sensor Simulator, and React Frontend Static Site) in one click.
+
+### Option A: 1-Click Render Blueprint
+1. Go to [dashboard.render.com](https://dashboard.render.com) and click **New +** $\rightarrow$ **Blueprint**.
+2. Connect your GitHub repository: `https://github.com/AKSHITAK1040/unbox-robotics`.
+3. Click **Apply**. Render will automatically provision the PostgreSQL database, build the backend web service, launch the simulator, and publish the frontend static site with live HTTPS URLs.
+
+### Option B: Manual Service Creation on Render
+If you prefer configuring services individually on Render:
+1. **Database:** Create a **PostgreSQL** instance on Render (Name: `unbox-db`, Database: `speedometer_db`).
+2. **Backend:** Create a **Web Service** from `backend/` (Build: `npm install`, Start: `npm start`). Add environment variable `DATABASE_URL` pointing to your PostgreSQL internal connection string.
+3. **Simulator:** Create a **Web Service** from `simulator/` (Build: `npm install`, Start: `npm start`). Add environment variable `BACKEND_URL` pointing to your backend URL.
+4. **Frontend:** Create a **Static Site** from `frontend/` (Build: `npm install && npm run build`, Publish: `dist`). Add environment variable `VITE_API_URL` pointing to your backend URL. Add a rewrite rule `/*` $\rightarrow$ `/index.html`.
 
 ---
 

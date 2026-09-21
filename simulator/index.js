@@ -1,6 +1,10 @@
 const axios = require('axios');
 
-const BACKEND_URL = process.env.BACKEND_URL || 'http://localhost:3000';
+let rawBackendUrl = process.env.BACKEND_URL || 'http://localhost:3000';
+if (!rawBackendUrl.startsWith('http://') && !rawBackendUrl.startsWith('https://')) {
+  rawBackendUrl = `https://${rawBackendUrl}`;
+}
+const BACKEND_URL = rawBackendUrl;
 const ENDPOINT = `${BACKEND_URL}/api/speed`;
 const INTERVAL = 1000;
 
@@ -38,6 +42,14 @@ async function sendSpeedData() {
   }
 }
 
+// Optional lightweight HTTP listener to satisfy cloud platform port checks (e.g., Render Web Service)
+if (process.env.PORT) {
+  const http = require('http');
+  http.createServer((req, res) => res.end('Unbox Simulator Active')).listen(process.env.PORT, () => {
+    console.log(`[Simulator] Health listener active on port ${process.env.PORT}`);
+  });
+}
+
 function startSimulation() {
   console.log(`[Simulator] Starting simulation, sending data to ${ENDPOINT} every ${INTERVAL}ms`);
   
@@ -48,3 +60,4 @@ function startSimulation() {
 }
 
 startSimulation();
+
